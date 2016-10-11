@@ -16,7 +16,7 @@ unix|max {
 qmakeforce.target = dummy
 qmakeforce.commands = mv Makefile Makefile.old # hack to force qmake to run every time
 qmakeforce.depends = FORCE
-POST_TARGETDEPS += $$qmakeforce.target
+PRE_TARGETDEPS += $$qmakeforce.target
 QMAKE_EXTRA_TARGETS += qmakeforce
 
 HEADERS += \

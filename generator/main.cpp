@@ -3,6 +3,7 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QJsonObject>
+#include <QVersionNumber>
 
 QString runCommand(QString command, QStringList arguments) {
     QProcess process;
@@ -34,9 +35,42 @@ int main(int argc, char** argv) {
     root["description"] = description;
     root["dirty"] = dirty;
     QJsonDocument doc(root);
-    QFile file("version_info.json");
+    QFile jsonFile("version_info.json");
+    jsonFile.open(QFile::WriteOnly);
+    jsonFile.write(doc.toJson());
+
+    int suffixIndex = 0;
+    QVersionNumber versionNumber = QVersionNumber::fromString(latestTag, &suffixIndex);
+    QString suffix;
+    if(suffixIndex > 0) {
+        suffix = latestTag.mid(suffixIndex);
+    }
+
+    QFile file("version_info.h");
     file.open(QFile::WriteOnly);
-    file.write(doc.toJson());
+
+    QString contents = "#include <QString>\n"
+                       "\n"
+                       "namespace CuteVersioning {\n"
+                       "const QString latestTag = \"%1\";\n"
+                       "const QString description = \"%2\";\n"
+                       "const bool dirty = %3;\n"
+                       "const int majorVersion = %4;\n"
+                       "const int minorVersion = %5;\n"
+                       "const int microVersion = %6;\n"
+                       "const QString suffix = \"%7\";\n"
+                       "}\n";
+
+    contents = contents.arg(latestTag,
+                            description,
+                            dirty ? "true" : "false",
+                            QString::number(versionNumber.majorVersion()),
+                            QString::number(versionNumber.minorVersion()),
+                            QString::number(versionNumber.microVersion()),
+                            suffix
+                            );
+
+    file.write(contents.toLatin1());
 
     return 0;
 }

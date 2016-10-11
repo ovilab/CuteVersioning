@@ -6,66 +6,56 @@
 #include <QJsonObject>
 #include <QDebug>
 
-CuteVersioning::Version::Version() {
-    QFile file(":/CuteVersioning/generator/version_info.json");
-    if(!file.open(QFile::ReadOnly)) {
-        qWarning() << "Could not open version_info.json.";
-    }
-    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-    QJsonObject root = doc.object();
-    m_latestTag = root["latestTag"].toString();
-    m_description = root["description"].toString();
-    m_dirty = root["dirty"].toBool();
+#include "../generator/version_info.h"
 
-    int suffixIndex = 0;
-    m_versionNumber = QVersionNumber::fromString(m_latestTag, &suffixIndex);
-    m_suffix = m_latestTag.mid(suffixIndex);
+namespace CuteVersioning {
+
+QuickVersion::QuickVersion()
+{
+
 }
 
-QObject *CuteVersioning::Version::qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine)
+QObject *QuickVersion::qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine);
     Q_UNUSED(scriptEngine);
 
-    return new Version;
+    return new QuickVersion;
 }
 
-int CuteVersioning::Version::majorVersion() const
+int QuickVersion::majorVersion() const
 {
-    return m_versionNumber.majorVersion();
+    return CuteVersioning::majorVersion;
 }
 
-int CuteVersioning::Version::minorVersion() const
+int QuickVersion::minorVersion() const
 {
-    return m_versionNumber.minorVersion();
+    return CuteVersioning::minorVersion;
 }
 
-int CuteVersioning::Version::patchVersion() const
+int QuickVersion::microVersion() const
 {
-    return m_versionNumber.microVersion();
+    return CuteVersioning::microVersion;
 }
 
-int CuteVersioning::Version::microVersion() const
+QString QuickVersion::suffix() const
 {
-    return m_versionNumber.microVersion();
+    return CuteVersioning::suffix;
 }
 
-QString CuteVersioning::Version::suffix() const
+QString QuickVersion::latestTag() const
 {
-    return m_suffix;
+    return CuteVersioning::latestTag;
 }
 
-QString CuteVersioning::Version::latestTag() const
+QString QuickVersion::description() const
 {
-    return m_latestTag;
+    return CuteVersioning::description;
 }
 
-QString CuteVersioning::Version::description() const
+bool QuickVersion::dirty() const
 {
-    return m_description;
+    return CuteVersioning::dirty;
 }
 
-bool CuteVersioning::Version::dirty() const
-{
-    return m_dirty;
 }

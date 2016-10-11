@@ -6,7 +6,7 @@
 namespace CuteVersioning {
 
 void init() {
-    qmlRegisterSingletonType<Version>("CuteVersioning", 1, 0, "Version", &Version::qmlInstance);
+    qmlRegisterSingletonType<QuickVersion>("CuteVersioning", 1, 0, "Version", &QuickVersion::qmlInstance);
 }
 
 }
