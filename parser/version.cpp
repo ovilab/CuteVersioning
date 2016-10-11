@@ -15,7 +15,8 @@ CuteVersioning::Version::Version() {
     QJsonObject root = doc.object();
     m_latestTag = root["latestTag"].toString();
     m_description = root["description"].toString();
-    m_dirty = root["latestTag"].toBool();
+    m_dirty = root["dirty"].toBool();
+
     int suffixIndex = 0;
     m_versionNumber = QVersionNumber::fromString(m_latestTag, &suffixIndex);
     m_suffix = m_latestTag.mid(suffixIndex);

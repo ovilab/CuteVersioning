@@ -22,7 +22,12 @@ int main(int argc, char** argv) {
 
     QString latestTag = runCommand("git", {"--git-dir", gitDir, "describe", "--always", "--tags", "--abbrev=0"});
     QString description = runCommand("git", {"--git-dir", gitDir, "describe", "--always", "--tags", "--long"});
-    QString dirty = runCommand("git", {"diff-index", "--quiet", "HEAD", "--"});
+    QProcess dirtyProcess;
+    dirtyProcess.start("git", {"diff-index", "--quiet", "HEAD", "--"});
+    if(!dirtyProcess.waitForFinished()) {
+        qFatal("QProcess call never returned");
+    }
+    bool dirty = (dirtyProcess.exitCode() > 0);
 
     QJsonObject root;
     root["latestTag"] = latestTag;

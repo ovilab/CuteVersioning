@@ -22,7 +22,7 @@ QMAKE_EXTRA_TARGETS += qmakeforce
 HEADERS += \
     $$PWD/cuteversioning.h \
     $$PWD/parser/version.h
-RESOURCES += $$PWD/versioning.qrc
+RESOURCES += $$PWD/CuteVersioning.qrc
 
 SOURCES += \
     $$PWD/parser/version.cpp
