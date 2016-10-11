@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/CuteVersioning">
-        <file>generator/version_info.json</file>
-    </qresource>
-</RCC>
