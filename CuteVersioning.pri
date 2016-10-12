@@ -1,4 +1,4 @@
-# Check if Python is installed
+SYSTEM_QMAKE_BIN = $$[QT_INSTALL_BINS]/qmake
 win32 {
     SYSTEM_QMAKE_BIN = $$system(where qmake)
 }
@@ -7,11 +7,10 @@ unix|max {
 }
 
 !isEmpty(SYSTEM_QMAKE_BIN) {
-    system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
+system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
 } else {
-    warning(Cannot update version files: qmake not found in PATH.)
+    warning(Cannot update version files: qmake not found in PATH nor bins.)
 }
-
 
 qmakeforce.target = dummy
 qmakeforce.commands = mv Makefile Makefile.old # hack to force qmake to run every time
