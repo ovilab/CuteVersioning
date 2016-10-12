@@ -1,5 +1,5 @@
-#ifndef CUTE_VERSIONING_VERSION
-#define CUTE_VERSIONING_VERSION
+#ifndef CUTE_VERSIONING_QUICKVERSION
+#define CUTE_VERSIONING_QUICKVERSION
 
 #include <QObject>
 #include <QString>
@@ -16,7 +16,7 @@ class QuickVersion : public QObject {
     Q_PROPERTY(int microVersion READ microVersion CONSTANT)
     Q_PROPERTY(QString suffix READ suffix CONSTANT)
     Q_PROPERTY(QString latestTag READ latestTag CONSTANT)
-    Q_PROPERTY(QString description READ description CONSTANT)
+    Q_PROPERTY(QString identifier READ identifier CONSTANT)
     Q_PROPERTY(bool dirty READ dirty CONSTANT)
 
 public:
@@ -27,10 +27,10 @@ public:
     int microVersion() const;
     QString suffix() const;
     QString latestTag() const;
-    QString description() const;
+    QString identifier() const;
     bool dirty() const;
 
     static QObject *qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine);
 };
 }
-#endif // CUTE_VERSIONING_VERSION
+#endif // CUTE_VERSIONING_QUICKVERSION

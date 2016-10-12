@@ -1,4 +1,4 @@
-#include "version.h"
+#include "quickversion.h"
 
 #include <QVersionNumber>
 #include <QFile>
@@ -6,7 +6,7 @@
 #include <QJsonObject>
 #include <QDebug>
 
-#include "../generator/version_info.h"
+#include "version.h"
 
 namespace CuteVersioning {
 
@@ -48,9 +48,9 @@ QString QuickVersion::latestTag() const
     return CuteVersioning::latestTag;
 }
 
-QString QuickVersion::description() const
+QString QuickVersion::identifier() const
 {
-    return CuteVersioning::description;
+    return CuteVersioning::identifier;
 }
 
 bool QuickVersion::dirty() const

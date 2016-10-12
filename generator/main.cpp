@@ -30,15 +30,6 @@ int main(int argc, char** argv) {
     }
     bool dirty = (dirtyProcess.exitCode() > 0);
 
-    QJsonObject root;
-    root["latestTag"] = latestTag;
-    root["description"] = description;
-    root["dirty"] = dirty;
-    QJsonDocument doc(root);
-    QFile jsonFile("version_info.json");
-    jsonFile.open(QFile::WriteOnly);
-    jsonFile.write(doc.toJson());
-
     int suffixIndex = 0;
     QVersionNumber versionNumber = QVersionNumber::fromString(latestTag, &suffixIndex);
     QString suffix;
@@ -46,14 +37,14 @@ int main(int argc, char** argv) {
         suffix = latestTag.mid(suffixIndex);
     }
 
-    QFile file("version_info.h");
+    QFile file("../CuteVersioning/version.h");
     file.open(QFile::WriteOnly);
 
     QString contents = "#include <QString>\n"
                        "\n"
                        "namespace CuteVersioning {\n"
                        "const QString latestTag = \"%1\";\n"
-                       "const QString description = \"%2\";\n"
+                       "const QString identifier = \"%2\";\n"
                        "const bool dirty = %3;\n"
                        "const int majorVersion = %4;\n"
                        "const int minorVersion = %5;\n"

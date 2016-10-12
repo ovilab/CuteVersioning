@@ -1,7 +1,8 @@
-#ifndef CUTEVERSIONING_H
-#define CUTEVERSIONING_H
+#ifndef INIT_H
+#define INIT_H
 
-#include "parser/version.h"
+#include <QQmlEngine>
+#include "./quickversion.h"
 
 namespace CuteVersioning {
 
@@ -11,4 +12,4 @@ void init() {
 
 }
 
-#endif // CUTEVERSIONING_H
+#endif // INIT_H

@@ -20,11 +20,13 @@ PRE_TARGETDEPS += $$qmakeforce.target
 QMAKE_EXTRA_TARGETS += qmakeforce
 
 HEADERS += \
-    $$PWD/cuteversioning.h \
-    $$PWD/parser/version.h
+    $$PWD/CuteVersioning/CuteVersioning \
+    $$PWD/src/cuteversioning.h \
+    $$PWD/src/init.h \
+    $$PWD/src/quickversion.h
 RESOURCES +=
 
 SOURCES += \
-    $$PWD/parser/version.cpp
+    $$PWD/src/quickversion.cpp
 
 INCLUDEPATH += $$PWD
