@@ -37,3 +37,4 @@ Makefile*
 CMakeLists.txt.user
 
 generator/version_info.h
+generator/generator
