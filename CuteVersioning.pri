@@ -7,7 +7,6 @@ unix|max {
 }
 
 !isEmpty(SYSTEM_QMAKE_BIN) {
-    message(Updating versions)
     system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
 } else {
     warning(Cannot update version files: qmake not found in PATH nor bins.)
