@@ -8,7 +8,7 @@ isEmpty(SYSTEM_QMAKE_BIN) {
     SYSTEM_QMAKE_BIN = $$[QT_INSTALL_BINS]/qmake
 }
 !isEmpty(SYSTEM_QMAKE_BIN) {
-    system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
+    system(cd $$PWD/generator && $$SYSTEM_QMAKE_BIN && make && ./generator $$GIT_DIR)
 } else {
     warning(Cannot update version files: qmake not found in PATH nor bins.)
 }
