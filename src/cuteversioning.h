@@ -4,6 +4,6 @@
 #include "./init.h"
 #include "./quickversion.h"
 // will be generated
-#include "./version.h"
+#include "./../CuteVersioning/version.h"
 
 #endif // CUTEVERSIONING_H
