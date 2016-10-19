@@ -7,15 +7,16 @@ unix|max {
 }
 
 !isEmpty(SYSTEM_QMAKE_BIN) {
-system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
+    message(Updating versions)
+    system(cd $$PWD/generator; qmake; make; ./generator $$GIT_DIR)
 } else {
     warning(Cannot update version files: qmake not found in PATH nor bins.)
 }
 
 qmakeforce.target = dummy
-qmakeforce.commands = mv Makefile Makefile.old # hack to force qmake to run every time
+qmakeforce.commands = touch $$PWD/CuteVersioning.pri # hack to force qmake to run every time
 qmakeforce.depends = FORCE
-PRE_TARGETDEPS += $$qmakeforce.target
+POST_TARGETDEPS += $$qmakeforce.target
 QMAKE_EXTRA_TARGETS += qmakeforce
 
 HEADERS += \
