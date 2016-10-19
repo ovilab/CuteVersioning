@@ -18,11 +18,17 @@ qmakeforce.depends = FORCE
 POST_TARGETDEPS += $$qmakeforce.target
 QMAKE_EXTRA_TARGETS += qmakeforce
 
+#exists($$PWD/CuteVersioning/version.h) {
+#    message(LOL)
+    HEADERS += $$PWD/CuteVersioning/version.h
+#}
+
 HEADERS += \
     $$PWD/CuteVersioning/CuteVersioning \
     $$PWD/src/cuteversioning.h \
     $$PWD/src/init.h \
-    $$PWD/src/quickversion.h
+    $$PWD/src/quickversion.h \
+
 RESOURCES +=
 
 SOURCES += \

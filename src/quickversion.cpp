@@ -6,7 +6,7 @@
 #include <QJsonObject>
 #include <QDebug>
 
-#include "version.h"
+#include "../CuteVersioning/version.h"
 
 namespace CuteVersioning {
 
