@@ -36,5 +36,5 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user
 
-generator/version_info.h
+CuteVersioning/version.h
 generator/generator
