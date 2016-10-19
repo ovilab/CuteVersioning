@@ -1,9 +1,9 @@
 #ifndef CUTEVERSIONING_H
 #define CUTEVERSIONING_H
 
-#include "./init.h"
-#include "./quickversion.h"
+#include "../src/init.h"
+#include "../src//quickversion.h"
 // will be generated
-#include "../CuteVersioning/version.h"
+#include "./version.h"
 
 #endif // CUTEVERSIONING_H

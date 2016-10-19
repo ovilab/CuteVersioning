@@ -25,9 +25,9 @@ exists($$PWD/CuteVersioning/version.h) {
 
 HEADERS += \
     $$PWD/CuteVersioning/CuteVersioning \
-    $$PWD/src/cuteversioning.h \
     $$PWD/src/init.h \
     $$PWD/src/quickversion.h \
+    $$PWD/CuteVersioning/cuteversioning.h
 
 RESOURCES +=
 
