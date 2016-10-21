@@ -12,7 +12,6 @@ GIT_DIRTY = true
 !isEmpty(GIT_BIN) {
     GIT_LATEST_TAG = $$system(git --git-dir $$GIT_DIR describe --always --tags --abbrev=0)
     GIT_DESCRIPTION = $$system(git --git-dir $$GIT_DIR describe --always --tags --long)
-    GIT_DIRTY = true
     system(git --git-dir $$GIT_DIR diff-index --quiet HEAD --) {
         GIT_DIRTY=false
     }
