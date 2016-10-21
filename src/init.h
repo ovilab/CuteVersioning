@@ -1,8 +1,9 @@
 #ifndef INIT_H
 #define INIT_H
 
-#include <QQmlEngine>
 #include "./quickversion.h"
+
+#include <QtQml>
 
 namespace CuteVersioning {
 
