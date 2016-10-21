@@ -10,11 +10,13 @@ GIT_DESCRIPTION = "git-not-found"
 GIT_DIRTY = true
 
 !isEmpty(GIT_BIN) {
-    GIT_LATEST_TAG = $$system(git --git-dir $$GIT_DIR describe --always --tags --abbrev=0)
-    GIT_DESCRIPTION = $$system(git --git-dir $$GIT_DIR describe --always --tags --long)
-    GIT_STATUS = $$system(git --git-dir $$GIT_DIR diff-index HEAD)
+    GIT_LATEST_TAG = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE describe --always --tags --abbrev=0)
+    GIT_DESCRIPTION = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE describe --always --tags --long)
+    GIT_STATUS = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE diff-index HEAD)
     isEmpty(GIT_STATUS) {
         GIT_DIRTY=false
+    } else {
+        message($$GIT_STATUS)
     }
 }
 
