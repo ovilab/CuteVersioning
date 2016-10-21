@@ -12,11 +12,9 @@ GIT_DIRTY = true
 !isEmpty(GIT_BIN) {
     GIT_LATEST_TAG = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE describe --always --tags --abbrev=0)
     GIT_DESCRIPTION = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE describe --always --tags --long)
-    GIT_STATUS = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE diff-index HEAD)
+    GIT_STATUS = $$system(git --git-dir $$GIT_DIR --work-tree $$GIT_WORK_TREE status --porcelain --untracked-files=no)
     isEmpty(GIT_STATUS) {
         GIT_DIRTY=false
-    } else {
-        message($$GIT_STATUS)
     }
 }
 
