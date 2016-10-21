@@ -25,22 +25,23 @@ QObject *QuickVersion::qmlInstance(QQmlEngine *engine, QJSEngine *scriptEngine)
 
 int QuickVersion::majorVersion() const
 {
-    return CuteVersioning::majorVersion;
+    return CuteVersioning::versionNumber.majorVersion();
 }
 
 int QuickVersion::minorVersion() const
 {
-    return CuteVersioning::minorVersion;
+    return CuteVersioning::versionNumber.minorVersion();
 }
 
 int QuickVersion::microVersion() const
 {
-    return CuteVersioning::microVersion;
+    return CuteVersioning::versionNumber.microVersion();
 }
 
 QString QuickVersion::suffix() const
 {
-    return CuteVersioning::suffix;
+//    return CuteVersioning::versionNumber.suffix();
+    return QString();
 }
 
 QString QuickVersion::latestTag() const
