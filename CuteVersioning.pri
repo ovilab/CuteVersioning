@@ -12,7 +12,8 @@ GIT_DIRTY = true
 !isEmpty(GIT_BIN) {
     GIT_LATEST_TAG = $$system(git --git-dir $$GIT_DIR describe --always --tags --abbrev=0)
     GIT_DESCRIPTION = $$system(git --git-dir $$GIT_DIR describe --always --tags --long)
-    !system(git --git-dir $$GIT_DIR diff-index --quiet HEAD --) {
+    GIT_STATUS = $$system(git --git-dir $$GIT_DIR diff-index HEAD)
+    isEmpty(GIT_STATUS) {
         GIT_DIRTY=false
     }
 }
@@ -34,7 +35,7 @@ qmakeforce.target = dummy
 unix {
     qmakeforce.commands = touch $$PWD/CuteVersioning.pri # hack to force qmake to run every time
 } win32 {
-    qmakeforce.commands = type NUL >> $$PWD/CuteVersioning.pri
+    # TODO support for forced qmake run on Windows
 }
 qmakeforce.depends = FORCE
 POST_TARGETDEPS += $$qmakeforce.target
@@ -54,4 +55,3 @@ SOURCES += \
     $$PWD/src/quickversion.cpp
 
 INCLUDEPATH += $$PWD
-
