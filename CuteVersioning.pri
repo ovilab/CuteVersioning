@@ -36,7 +36,7 @@ write_file($$PWD/CuteVersioning/version.h, HEADER_OUTPUT)
 
 # Write AndroidManifest.xml
 android {
-    $$CUTEVERSIONING_REPLACE_ANDROID_VERSION_NAME {
+    !isEmpty(CUTEVERSIONING_REPLACE_ANDROID_VERSION_NAME) {
         !isEmpty(ANDROID_PACKAGE_SOURCE_DIR) {
             ANDROID_RESULT = $$system(cat $${ANDROID_PACKAGE_SOURCE_DIR}/AndroidManifest.xml | \
                         sed -e 's/android:versionName=\\"[^\\"]*/android:versionName=\\"$${CUTEVERSIONING_GIT_LATEST_TAG}/' \
